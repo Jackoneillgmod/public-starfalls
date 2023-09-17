@@ -1,0 +1,24 @@
+--@name Ammo
+--@author General Jack O'Neill
+
+hook.add('PlayerSay', 'ammo', function(player, ammo)
+
+player = owner()
+    
+    if string.lower(ammo) == "ammo" then
+        
+    
+
+local ply = entity(1)
+
+for _, weapon in pairs(ply:getWeapons()) do
+    -- Check if the weapon is valid and has a primary ammo type
+    if isValid(weapon) and weapon:getPrimaryAmmoType() ~= -1 then
+        local maxAmmo = 9999
+
+        ply:setAmmo(maxAmmo, weapon:getPrimaryAmmoType())
+    end
+end
+end
+end)
+

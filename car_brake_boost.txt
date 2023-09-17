@@ -1,0 +1,21 @@
+--@name Car Brake Boost
+--@server
+
+local car = chip():isWeldedTo()
+
+local brakeForce = 50000 -- force, I suggest you keep this below 100000
+
+
+hook.add("Think", "BrakeBoost", function()
+    local driver = car:getDriver()
+    if driver:isValid() and driver:isPlayer() and driver:keyDown(16) then
+        local phys = car:getPhysicsObject()
+        if phys:isValid() then
+            local velocity = phys:getVelocity()
+            local direction = -velocity:getNormalized()
+            if velocity:dot(car:getForward()) > 0 then
+                phys:applyForceCenter(direction * brakeForce)
+            end
+        end
+    end
+end)
