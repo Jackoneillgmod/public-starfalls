@@ -1,0 +1,11 @@
+--@name Starfall error viewer
+--@author General Jack O'Neill
+--@server
+
+hook.add("StarfallError", "PrintOwnerErrorToChat", function(ent, ply, err)
+    if ent:getOwner() == owner() then
+    timer.create('say', 0.5, 1, function()
+     print(err)
+        end)
+    end
+end)
